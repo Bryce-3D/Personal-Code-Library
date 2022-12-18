@@ -207,8 +207,8 @@ class Segtree:
 
         Runtime: `O(1)`
 
-        Arguments
-        ---------
+        Parameters
+        ----------
         ind : int
             The index we want to get
 
