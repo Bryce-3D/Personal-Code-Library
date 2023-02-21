@@ -29,12 +29,12 @@ class Segtree:
             Returns a copy of the underlying array
     '''
     
-    #Fields
-    _n = None      #Number of items in the underlying list
-    _op = None     #Join operator; modified to handle `None` inputs
-    _seg = None    #Array to store the main segtree
-    _span = None   #span[i] = interval [L:R] corresponding to seg[i]
-    _l = None      #Length of seg
+    #Instance attributes
+    #    n    - Number of items in the underlying list
+    #    op   - Join operator; modified to handle `None` inputs
+    #    seg  - Array to store the main segtree
+    #    span - span[i] = interval [L:R] corresponding to seg[i]
+    #    l    - Length of seg
 
 
 
@@ -72,7 +72,7 @@ class Segtree:
 
         #Calculate the length 
         k = 2 ** Segtree._ceil_log_2(self.n)   #Number of leaves (padded)
-        self.l = 2*k - 1                      #Number of nodes
+        self.l = 2*k - 1                       #Number of nodes
 
         #Initialize `seg`` with `None`s. Unused nodes will remain as `None`
         self.seg = [None for i in range(self.l)]
@@ -127,11 +127,13 @@ class Segtree:
         return self._help_me_query(L, R, 0)
     
     def _help_me_query(self, L: int, R: int, i: int):
-        # Helper function for query.
-        # Returns the result of applying `op` on the interval `a[L:R]`
-        # Has an extra input `i` that represents the index of `seg` and `span` 
-        # currently being looked at to help traverse the segtree.
-        # [L:R] will always be contained entirely inside self.span[i].
+        '''
+        Helper function for query.
+        Returns the result of applying `op` on the interval `a[L:R]`
+        Has an extra input `i` that represents the index of `seg` and `span` 
+        currently being looked at to help traverse the segtree.
+        [L:R] will always be contained entirely inside self.span[i].
+        '''
 
         #If [L:R] is exactly self.span[i], return the value in seg[i]
         L_0 = self.span[i][0]   #Left end of seg[i]'s interval
@@ -251,9 +253,11 @@ class Segtree:
 
     @staticmethod
     def _ceil_log_2(n):
-        # Utility function to get the value of 
-        #     ceil(log_2(n))
-        # Used to get the size of the array needed to store the segtree.
+        '''
+        Utility function to get the value of 
+            ceil(log_2(n))
+        Used to get the size of the array needed to store the segtree.
+        '''
         
         ans = 0
         exact = True   #True iff n is an exact power of 2
