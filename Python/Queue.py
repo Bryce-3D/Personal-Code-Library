@@ -9,28 +9,27 @@ class Queue:
     in stack 1 and pushing it into stack 2 until stack 1 is empty.
     '''
 
-    #Fields
-    _stack_1 = None   #Internal stack 1
-    _stack_2 = None   #Internal stack 2
-    _n       = None   #Number of elements currently in the queue
+    #Instance Attributes
+    #_stack_1 - Internal stack 1
+    #_stack_2 - Internal stack 2
+    #_n       - Number of elements currently in the queue
 
     def __init__(self):
+        '''Initializes an empty Queue'''
         self.stack_1 = []
         self.stack_2 = []
         self.n = 0
     
-    '''
-    Enqueues an element `k` at the back of the queue
-    '''
     def enq(self, k):
+        '''Enqueues an element `k` at the back of the queue'''
         self.n += 1
         self.stack_1.append(k)
     
-    '''
-    Dequeues and returns the element at the front of the queue.
-    If the queue is empty, it returns `None`.
-    '''
     def deq(self):
+        '''
+        Dequeues and returns the element at the front of the queue.
+        If the queue is empty, it returns `None`.
+        '''
         if self.n == 0:
             return None
         
@@ -44,16 +43,12 @@ class Queue:
         #Return the top of stack 2
         return self.stack_2.pop()
     
-    '''
-    Empties the queue
-    '''
     def clear(self):
+        '''Empties the queue'''
         self.stack_1 = []
         self.stack_2 = []
         self.n = 0
     
-    '''
-    Returns the current length of the queue
-    '''
     def len(self):
+        '''Returns the current length of the queue'''
         return self.n
